@@ -1,3 +1,6 @@
+const AppError = require("../utils/appError");
+
+
 class UsersControlers {
 /**
  * index - GET para listar varios registros;
@@ -9,6 +12,9 @@ class UsersControlers {
 
 create(request, response){
     const { name, mail, senha } = request.body;
+
+
+    
 
     response.status(201).json({name, mail, senha});
 }

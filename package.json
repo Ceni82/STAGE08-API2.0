@@ -4,14 +4,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/server.js",
-    "dev":  "nodemon ./src/server.js"
+    "dev": "nodemon ./src/server.js"
   },
   "keywords": [],
   "author": "Mateus Ceni",
   "license": "ISC",
   "description": "API desenvolvida no programa Explorer da Rocket Seat",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
