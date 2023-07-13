@@ -9,5 +9,6 @@ const usersRoutes = Router();
 const usersControlers = new UsersControlers();
 
 usersRoutes.post("/", usersControlers.create);
+usersRoutes.put("/:id", usersControlers.update);
 
 module.exports = usersRoutes;
