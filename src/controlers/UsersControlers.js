@@ -1,5 +1,6 @@
 const AppError = require("../utils/appError");
 
+const sqliteConnection = require("../database/sqlite");
 
 class UsersControlers {
 /**
@@ -10,14 +11,18 @@ class UsersControlers {
  * delete - DELETE para remover um registro;
  */
 
-create(request, response){
-    const { name, mail, senha } = request.body;
+    async create(request, response){
+    const { name, email, password } = request.body;
 
+    const database = await sqliteConnection ();
+    const checkUserExists = await database.get("SELECT * FROM users WHERE email = (?)", [email])
 
-    
-
-    response.status(201).json({name, mail, senha});
-}
+     if(checkUserExists){
+        throw new AppError("Email ja cadastrado!");
+     }   
+     
+     return response.status(201).json();
+    }
 }
 
 module.exports = UsersControlers;
