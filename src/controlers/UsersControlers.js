@@ -1,5 +1,5 @@
 const AppError = require("../utils/appError");
-
+const { hash } = require("bcryptjs");
 const sqliteConnection = require("../database/sqlite");
 
 class UsersControlers {
@@ -20,7 +20,13 @@ class UsersControlers {
      if(checkUserExists){
         throw new AppError("Email ja cadastrado!");
      }   
-     
+
+     const hashedPassword = await hash(password, 8);
+
+     await database.run("INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+        [name, email, hashedPassword]
+     );
+
      return response.status(201).json();
     }
 }
