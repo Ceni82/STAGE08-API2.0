@@ -47,8 +47,8 @@ class UsersControlers {
          throw new AppError("Este email já está em uso!");
       } 
 
-      user.name = name;
-      user.email = email;
+      user.name = name ?? user.name;
+      user.email = email ?? user.email;
 
       if(  password && !old_password ){
          throw new AppError("Tu tem q informar uma nova senha!")
@@ -69,9 +69,9 @@ class UsersControlers {
          name = ?,
          email = ?,
          password = ?,
-         update_at = ?,
+         update_at = DATATME ('now'),
          WHERE id = ?`,
-         [user.name, user.email, user.password, new Date(), id]
+         [user.name, user.email, user.password, id]
 
       );
 
