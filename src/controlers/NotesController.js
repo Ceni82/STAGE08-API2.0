@@ -29,7 +29,7 @@ class NotesController {
         });
         await knex("links").insert(linksInsert);
 
-        response.json();
+        return response.json();
     }
 
     async show(request, response){
